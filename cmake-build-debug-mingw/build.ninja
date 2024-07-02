@@ -88,6 +88,13 @@ build CMakeFiles/StaticOpenGL.dir/main.cpp.obj: CXX_COMPILER__StaticOpenGL_unsca
   OBJECT_DIR = CMakeFiles\StaticOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles\StaticOpenGL.dir
 
+build CMakeFiles/StaticOpenGL.dir/glad/src/glad.c.obj: C_COMPILER__StaticOpenGL_unscanned_Debug C$:/Users/Josep/CLionProjects/StaticOpenGL/glad/src/glad.c || cmake_object_order_depends_target_StaticOpenGL
+  DEP_FILE = CMakeFiles\StaticOpenGL.dir\glad\src\glad.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include
+  OBJECT_DIR = CMakeFiles\StaticOpenGL.dir
+  OBJECT_FILE_DIR = CMakeFiles\StaticOpenGL.dir\glad\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target StaticOpenGL
@@ -96,7 +103,7 @@ build CMakeFiles/StaticOpenGL.dir/main.cpp.obj: CXX_COMPILER__StaticOpenGL_unsca
 #############################################
 # Link the executable StaticOpenGL.exe
 
-build StaticOpenGL.exe: CXX_EXECUTABLE_LINKER__StaticOpenGL_Debug CMakeFiles/StaticOpenGL.dir/main.cpp.obj | libglad.a glfw-3.4/src/libglfw3.a || glfw-3.4/src/libglfw3.a libglad.a
+build StaticOpenGL.exe: CXX_EXECUTABLE_LINKER__StaticOpenGL_Debug CMakeFiles/StaticOpenGL.dir/main.cpp.obj CMakeFiles/StaticOpenGL.dir/glad/src/glad.c.obj | libglad.a glfw-3.4/src/libglfw3.a || glfw-3.4/src/libglfw3.a libglad.a
   FLAGS = -g
   LINK_FLAGS = -static
   LINK_LIBRARIES = libglad.a  glfw-3.4/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
