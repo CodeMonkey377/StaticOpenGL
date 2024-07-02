@@ -558,3 +558,85 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "glfw-3.4/CMakeLists.txt:60 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-fshhwu"
+      binary: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-fshhwu"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "-static"
+      CMAKE_MODULE_PATH: "C:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/CMake/modules"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-fshhwu
+        
+        Run Build Command(s):C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/ninja/win/x64/ninja.exe -v cmTC_3939f && [1/2] C:\\msys64\\mingw64\\bin\\cc.exe -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_3939f.dir/src.c.obj -c C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-fshhwu/src.c
+        [2/2] cmd.exe /C "cd . && C:\\msys64\\mingw64\\bin\\cc.exe  -static CMakeFiles/cmTC_3939f.dir/src.c.obj -o cmTC_3939f.exe -Wl,--out-implib,libcmTC_3939f.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CheckIncludeFile.cmake:95 (try_compile)"
+      - "glfw-3.4/src/CMakeLists.txt:274 (check_include_file)"
+    checks:
+      - "Looking for dinput.h"
+    directories:
+      source: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-2pqt2x"
+      binary: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-2pqt2x"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "-static"
+      CMAKE_MODULE_PATH: "C:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/CMake/modules"
+    buildResult:
+      variable: "DINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-2pqt2x
+        
+        Run Build Command(s):C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/ninja/win/x64/ninja.exe -v cmTC_a741a && [1/2] C:\\msys64\\mingw64\\bin\\cc.exe    -o CMakeFiles/cmTC_a741a.dir/CheckIncludeFile.c.obj -c C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-2pqt2x/CheckIncludeFile.c
+        [2/2] cmd.exe /C "cd . && C:\\msys64\\mingw64\\bin\\cc.exe  -static CMakeFiles/cmTC_a741a.dir/CheckIncludeFile.c.obj -o cmTC_a741a.exe -Wl,--out-implib,libcmTC_a741a.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/JetBrains/CLion 2023.2.2/bin/cmake/win/x64/share/cmake-3.26/Modules/CheckIncludeFile.cmake:95 (try_compile)"
+      - "glfw-3.4/src/CMakeLists.txt:275 (check_include_file)"
+    checks:
+      - "Looking for xinput.h"
+    directories:
+      source: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-z6d8zc"
+      binary: "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-z6d8zc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "-static"
+      CMAKE_MODULE_PATH: "C:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/CMake/modules"
+    buildResult:
+      variable: "XINPUT_H_FOUND"
+      cached: true
+      stdout: |
+        Change Dir: C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-z6d8zc
+        
+        Run Build Command(s):C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/ninja/win/x64/ninja.exe -v cmTC_e95f9 && [1/2] C:\\msys64\\mingw64\\bin\\cc.exe    -o CMakeFiles/cmTC_e95f9.dir/CheckIncludeFile.c.obj -c C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/CMakeFiles/CMakeScratch/TryCompile-z6d8zc/CheckIncludeFile.c
+        [2/2] cmd.exe /C "cd . && C:\\msys64\\mingw64\\bin\\cc.exe  -static CMakeFiles/cmTC_e95f9.dir/CheckIncludeFile.c.obj -o cmTC_e95f9.exe -Wl,--out-implib,libcmTC_e95f9.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        
+      exitCode: 0
+...
