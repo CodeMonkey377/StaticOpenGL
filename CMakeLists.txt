@@ -13,7 +13,7 @@ add_library(glad STATIC glad/src/glad.c)
 set(GLFW_BUILD_WAYLAND OFF)
 add_subdirectory(glfw-3.4)
 
-add_executable(StaticOpenGL main.cpp)
+add_executable(StaticOpenGL main.cpp glad.c)
 
 target_link_libraries(StaticOpenGL glad glfw ${GLFW_LIBRARIES})
 # If I decide to use windows or unix specific static libraries
