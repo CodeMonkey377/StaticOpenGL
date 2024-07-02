@@ -10,6 +10,7 @@ include_directories(glfw-3.4/include)
 
 add_library(glad STATIC glad/src/glad.c)
 
+set(GLFW_BUILD_WAYLAND OFF)
 add_subdirectory(glfw-3.4)
 
 add_executable(StaticOpenGL main.cpp)
