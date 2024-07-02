@@ -1,0 +1,3 @@
+C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug/CMakeFiles/StaticOpenGL.dir
+C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
