@@ -2,15 +2,6 @@
 -- Including Win32 support
 -- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
 -- Documentation generation requires Doxygen 1.9.8 or later
--- Configuring done (0.1s)
-CMake Error at CMakeLists.txt:16 (add_executable):
-  Cannot find source file:
-
-    glad.c
-
-
-CMake Error at CMakeLists.txt:16 (add_executable):
-  No SOURCES given to target: StaticOpenGL
-
-
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Configuring done (0.3s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw

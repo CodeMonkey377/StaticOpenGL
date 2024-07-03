@@ -21,6 +21,17 @@ int main() {
        std::cout << "Glad failed to load GL function pointers" << "\n";
        return -2;
    }
+   std::cout << "Loaded Open GL\n";
+   glViewport(0, 0, 1500, 1500);
+
+    while(!glfwWindowShouldClose(window)){
+        glfwPollEvents();
+
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glfwSwapBuffers(window);
+    }
 
    glfwTerminate();
    return 0;
