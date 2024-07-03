@@ -5,13 +5,22 @@
 
 int main() {
     glfwInit();
-    if (glfwInit == false){
-	    std::cout << "Failed to init glfw" << "\n";
-	    return -1;
-    }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
+    struct tile{
+        GLfloat vertices[12] = {
+                -1.0f, -1.0f, 0.0f,
+                1.0f, -1.0f, 0.0f,
+                -1.0f, 1.0f, 0.0f,
+                1.0f, 1.0f, 0.0f,
+        };
+
+
+    };
+
 
     GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
    

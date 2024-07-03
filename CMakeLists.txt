@@ -7,6 +7,7 @@ set(CMAKE_EXE_LINKER_FLAGS "-static")
 
 include_directories(glad/include)
 include_directories(glfw-3.4/include)
+include_directories(glm)
 
 add_library(glad STATIC glad/src/glad.c)
 

@@ -1,0 +1,164 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"build" : "glfw-3.4",
+					"childIndexes" : 
+					[
+						2,
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-glfw-3.4-Debug-38571bd611fe38993c14.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "glfw-3.4",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "glfw-3.4/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-glfw-3.4.src-Debug-3ee37d7f8b256db2d9dd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "glfw-3.4/src",
+					"targetIndexes" : 
+					[
+						2,
+						4
+					]
+				},
+				{
+					"build" : "glfw-3.4/docs",
+					"jsonFile" : "directory-glfw-3.4.docs-Debug-03b470a2a0f971669fbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "glfw-3.4/docs"
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "StaticOpenGL",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "StaticOpenGL::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-StaticOpenGL-Debug-ad6ca56676b95837328a.json",
+					"name" : "StaticOpenGL",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "glad::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-glad-Debug-80ad803ff4ac87aa9e28.json",
+					"name" : "glad",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "glfw::@e31d138322de72f6ba56",
+					"jsonFile" : "target-glfw-Debug-0ec06f3605aa80241f2b.json",
+					"name" : "glfw",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@69e7fd860abdefc99d45",
+					"jsonFile" : "target-uninstall-Debug-30e6fa8446fd5a3bccfb.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "update_mappings::@e31d138322de72f6ba56",
+					"jsonFile" : "target-update_mappings-Debug-739d4dc1577a0b2cf35b.json",
+					"name" : "update_mappings",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw",
+		"source" : "C:/Users/Josep/CLionProjects/StaticOpenGL"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

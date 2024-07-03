@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_glad: phony || CMakeFiles/glad.dir
 build CMakeFiles/glad.dir/glad/src/glad.c.obj: C_COMPILER__glad_unscanned_Debug C$:/Users/Josep/CLionProjects/StaticOpenGL/glad/src/glad.c || cmake_object_order_depends_target_glad
   DEP_FILE = CMakeFiles\glad.dir\glad\src\glad.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm
   OBJECT_DIR = CMakeFiles\glad.dir
   OBJECT_FILE_DIR = CMakeFiles\glad.dir\glad\src
 
@@ -84,14 +84,14 @@ build cmake_object_order_depends_target_StaticOpenGL: phony || cmake_object_orde
 build CMakeFiles/StaticOpenGL.dir/main.cpp.obj: CXX_COMPILER__StaticOpenGL_unscanned_Debug C$:/Users/Josep/CLionProjects/StaticOpenGL/main.cpp || cmake_object_order_depends_target_StaticOpenGL
   DEP_FILE = CMakeFiles\StaticOpenGL.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm
   OBJECT_DIR = CMakeFiles\StaticOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles\StaticOpenGL.dir
 
 build CMakeFiles/StaticOpenGL.dir/glad/src/glad.c.obj: C_COMPILER__StaticOpenGL_unscanned_Debug C$:/Users/Josep/CLionProjects/StaticOpenGL/glad/src/glad.c || cmake_object_order_depends_target_StaticOpenGL
   DEP_FILE = CMakeFiles\StaticOpenGL.dir\glad\src\glad.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm
   OBJECT_DIR = CMakeFiles\StaticOpenGL.dir
   OBJECT_FILE_DIR = CMakeFiles\StaticOpenGL.dir\glad\src
 
@@ -280,7 +280,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/context.c.obj: C_COMPILER__glfw_unscanned
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\context.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -288,7 +288,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/init.c.obj: C_COMPILER__glfw_unscanned_De
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\init.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -296,7 +296,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/input.c.obj: C_COMPILER__glfw_unscanned_D
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\input.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -304,7 +304,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/monitor.c.obj: C_COMPILER__glfw_unscanned
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\monitor.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -312,7 +312,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/platform.c.obj: C_COMPILER__glfw_unscanne
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\platform.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -320,7 +320,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/vulkan.c.obj: C_COMPILER__glfw_unscanned_
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\vulkan.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -328,7 +328,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/window.c.obj: C_COMPILER__glfw_unscanned_
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\window.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -336,7 +336,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/egl_context.c.obj: C_COMPILER__glfw_unsca
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\egl_context.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -344,7 +344,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/osmesa_context.c.obj: C_COMPILER__glfw_un
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\osmesa_context.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -352,7 +352,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/null_init.c.obj: C_COMPILER__glfw_unscann
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\null_init.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -360,7 +360,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/null_monitor.c.obj: C_COMPILER__glfw_unsc
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\null_monitor.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -368,7 +368,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/null_window.c.obj: C_COMPILER__glfw_unsca
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\null_window.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -376,7 +376,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/null_joystick.c.obj: C_COMPILER__glfw_uns
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\null_joystick.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -384,7 +384,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_module.c.obj: C_COMPILER__glfw_unsc
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_module.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -392,7 +392,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_time.c.obj: C_COMPILER__glfw_unscan
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_time.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -400,7 +400,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_thread.c.obj: C_COMPILER__glfw_unsc
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_thread.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -408,7 +408,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_init.c.obj: C_COMPILER__glfw_unscan
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_init.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -416,7 +416,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_joystick.c.obj: C_COMPILER__glfw_un
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_joystick.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -424,7 +424,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_monitor.c.obj: C_COMPILER__glfw_uns
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_monitor.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -432,7 +432,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/win32_window.c.obj: C_COMPILER__glfw_unsc
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\win32_window.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
@@ -440,7 +440,7 @@ build glfw-3.4/src/CMakeFiles/glfw.dir/wgl_context.c.obj: C_COMPILER__glfw_unsca
   DEFINES = -DUNICODE -DWINVER=0x0501 -D_GLFW_WIN32 -D_UNICODE
   DEP_FILE = glfw-3.4\src\CMakeFiles\glfw.dir\wgl_context.c.obj.d
   FLAGS = -g -std=c99 -fdiagnostics-color=always -Wall
-  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
+  INCLUDES = -IC:/Users/Josep/CLionProjects/StaticOpenGL/glad/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/include -IC:/Users/Josep/CLionProjects/StaticOpenGL/glm -IC:/Users/Josep/CLionProjects/StaticOpenGL/glfw-3.4/src -IC:/Users/Josep/CLionProjects/StaticOpenGL/cmake-build-debug-mingw/glfw-3.4/src
   OBJECT_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = glfw-3.4\src\CMakeFiles\glfw.dir
 
