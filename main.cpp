@@ -5,17 +5,22 @@
 
 int main() {
     glfwInit();
+    if (glfwInit == false){
+	    std::cout << "Failed to init glfw" << "\n";
+	    return -1;
+    }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
-    glfwMakeContextCurrent(window);
+   
     if (window == nullptr){
         std::cout << "Failed to create GLFW window" << "\n";
         glfwTerminate();
         return -1;
     }
+    glfwMakeContextCurrent(window);
 
    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)){
        std::cout << "Glad failed to load GL function pointers" << "\n";
