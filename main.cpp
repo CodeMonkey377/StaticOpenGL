@@ -27,15 +27,23 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Two Triangles that make up square
-    GLfloat vertices[18] = {
-            1.0f, 1.0f, 0.0f,
-            -1.0f, 1.0f, 0.0f,
-            -1.0f, -1.0f, 0.0f,
+    GLfloat vertices[12] = {
+            1.0f, 1.0f,
+            -1.0f, 1.0f,
+            -1.0f, -1.0f,
 
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            1.0f, 1.0f, 0.0f,
+            -1.0f, -1.0f,
+            1.0f, -1.0f,
+            1.0f, 1.0,
     };
+
+    glm::vec2 translations[1] = {
+            glm::vec2 (2, 0)
+    };
+
+    std::cout << "\n" << translations[0].x << "," << translations[0].y << "\n";
+    std::cout << "Size of translations: " << sizeof(translations) << "\n";
+    std::cout << "Size of 2 GL floats: " << sizeof(GLfloat) * 2 << "\n";
 
     struct tile{
         // represents corner of tile or maybe offset
@@ -95,27 +103,38 @@ int main() {
         std::cout << "shader program successfully compiled";
     }
     */
-   GLuint VBO, VAO, EBO;
-   glGenVertexArrays(1, &VAO);
-   glBindVertexArray(VAO);
-   glGenBuffers(1, &VBO);
-   glBindBuffer(GL_ARRAY_BUFFER, VBO);
-   /* not entirely sure we need an EBO yet...
-   glGenBuffers(1, &EBO);
-   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-   */
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
-   glEnableVertexAttribArray(0);
+
+    GLuint VBO, instanceVBO, VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &instanceVBO);
+    glBindVertexArray(VAO);
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+    glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(translations), &translations[0], GL_STATIC_DRAW);
+    GLintptr vertex_position_offset = 0;
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)vertex_position_offset);
+    glVertexAttribDivisor(1, 1);
+    glEnableVertexAttribArray(1);
+
+    glBindVertexArray(0);
+
+
 
     while(!glfwWindowShouldClose(window)){
         glfwPollEvents();
-
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+
         glUseProgram(shader_program);
+
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 18);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, 2);
+        glBindVertexArray(0);
 
         glfwSwapBuffers(window);
     }
