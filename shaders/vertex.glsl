@@ -11,7 +11,9 @@ flat out int tile_is_alive;
 
 void main()
 {
+    // map offset
     vec2 translate_top_right = vec2(-map_width + 1, -map_height + 1);
+    // scales map to center
     vec2 scale = vec2(map_width, map_height);
     gl_Position = vec4(((aPos + aOffset + translate_top_right) / scale), 0.0f,  1.0f);
     tile_is_alive = is_alive;

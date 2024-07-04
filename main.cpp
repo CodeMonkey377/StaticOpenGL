@@ -20,6 +20,7 @@ std::string readFile(const char* filePath){
     return buffer.str();
 }
 
+/// function used in render loop to update is_alive vertex attribute sent to fragment shader
 void update_game(std::vector<GLuint> &tile_is_alive, int index){
     std::cout << "\nUpdating Game, test tile: ";
     std::cout << tile_is_alive[200];
@@ -52,7 +53,7 @@ int main() {
             1.0f, -1.0f,
             1.0f, 1.0,
     };
-
+    // vector filled with the offset values of each instance
     std::vector<glm::vec2> translations;
     int index_x = 0;
     int index_y = 0;
@@ -64,20 +65,9 @@ int main() {
         index_x = 0;
         index_y += 2;
     }
-
+    // vector that conveys weather a given tile is alive or dead. Runs bottom left to top right
     std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
     tile_is_alive[0] = 1;
-
-    std::cout << "size of tileisalive: " << tile_is_alive[2] << "\n";
-    struct tile{
-        // represents corner of tile or maybe offset
-        std::vector<glm::vec2> position;
-
-        /// Value of neighbors, need to figure out how pos will work first
-
-        // will go to fragment shader when drawing I am guessing
-        bool is_on;
-    };
 
     GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
@@ -110,7 +100,7 @@ int main() {
     glAttachShader(shader_program, vertex_shader);
     glAttachShader(shader_program, fragment_shader);
     glLinkProgram(shader_program);
-
+    // Sets uniform values in vertex shader for map offset
     glUseProgram(shader_program);
     glUniform1i(glGetUniformLocation(shader_program, "map_width"), map_width);
     glUniform1i(glGetUniformLocation(shader_program, "map_height"), map_height);
@@ -135,15 +125,16 @@ int main() {
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &instanceVBO);
     glBindVertexArray(VAO);
-
+    // vertices buffer
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
     glEnableVertexAttribArray(0);
+    // Instance buffer for translations and is alive data
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
     glBufferData(GL_ARRAY_BUFFER, long(translations.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), translations.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
-    // is alive bool
+    // is alive bool, 1 is alive 0 is dead
     GLintptr translation_offset = long(translations.size() * 2 * sizeof(GLfloat));
     glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
     glVertexAttribPointer(2, 1, GL_UNSIGNED_INT, GL_FALSE, sizeof(GLuint), (GLvoid*)translation_offset);
