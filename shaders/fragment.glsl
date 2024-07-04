@@ -6,7 +6,7 @@ flat in int tile_is_alive;
 // input color depending on pos, either white or black.
 void main()
 {
-    if (tile_is_alive == 1){
+    if (tile_is_alive > 0){
         frag_color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     }
     else{

@@ -20,13 +20,27 @@ std::string readFile(const char* filePath){
     return buffer.str();
 }
 
+void update_game(std::vector<GLuint> &tile_is_alive, int index){
+    std::cout << "\nUpdating Game, test tile: ";
+    std::cout << tile_is_alive[200];
+
+    // game of life
+
+    if (tile_is_alive[0] > 0){
+        std::fill(tile_is_alive.begin(), tile_is_alive.end(), 0);
+    }
+    else if (tile_is_alive[0] <= 0){
+        std::fill(tile_is_alive.begin(), tile_is_alive.end(), 1);
+    }
+}
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 95;
-    int map_height = 95;
+    int map_width = 25;
+    int map_height = 25;
 
     // Two Triangles that make up square
     GLfloat vertices[12] = {
@@ -52,7 +66,7 @@ int main() {
     }
 
     std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
-    tile_is_alive[2] = 1;
+    tile_is_alive[0] = 1;
 
     std::cout << "size of tileisalive: " << tile_is_alive[2] << "\n";
     struct tile{
@@ -97,6 +111,10 @@ int main() {
     glAttachShader(shader_program, fragment_shader);
     glLinkProgram(shader_program);
 
+    glUseProgram(shader_program);
+    glUniform1i(glGetUniformLocation(shader_program, "map_width"), map_width);
+    glUniform1i(glGetUniformLocation(shader_program, "map_height"), map_height);
+    glUseProgram(0);
     /* tests to see if shader is working properly
     int success;
     char infoLog[512];
@@ -137,7 +155,7 @@ int main() {
     glBindVertexArray(0);
 
 
-
+    float test_index = 0;
     while(!glfwWindowShouldClose(window)){
         glfwPollEvents();
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -146,8 +164,15 @@ int main() {
         glUseProgram(shader_program);
 
         glBindVertexArray(VAO);
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(translations.size() + 1));
+        glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(translations.size()));
         glBindVertexArray(0);
+
+        test_index += 0.001;
+        if (test_index > 1){
+            test_index = 0;
+            //update_game(tile_is_alive);
+        }
 
         glfwSwapBuffers(window);
     }
