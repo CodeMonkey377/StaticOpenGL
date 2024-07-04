@@ -25,6 +25,8 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    int map_width = 95;
+    int map_height = 95;
 
     // Two Triangles that make up square
     GLfloat vertices[12] = {
@@ -37,14 +39,22 @@ int main() {
             1.0f, 1.0,
     };
 
-    glm::vec2 translations[1] = {
-            glm::vec2 (2, 0)
-    };
+    std::vector<glm::vec2> translations;
+    int index_x = 0;
+    int index_y = 0;
+    for (int i = 0; i < map_height; i++){
+        for (int j = 0; j < map_width; j++){
+            translations.emplace_back(index_x, index_y);
+            index_x += 2;
+        }
+        index_x = 0;
+        index_y += 2;
+    }
 
-    std::cout << "\n" << translations[0].x << "," << translations[0].y << "\n";
-    std::cout << "Size of translations: " << sizeof(translations) << "\n";
-    std::cout << "Size of 2 GL floats: " << sizeof(GLfloat) * 2 << "\n";
+    std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
+    tile_is_alive[2] = 1;
 
+    std::cout << "size of tileisalive: " << tile_is_alive[2] << "\n";
     struct tile{
         // represents corner of tile or maybe offset
         std::vector<glm::vec2> position;
@@ -54,8 +64,6 @@ int main() {
         // will go to fragment shader when drawing I am guessing
         bool is_on;
     };
-    int map_width;
-    int map_height;
 
     GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
@@ -115,12 +123,17 @@ int main() {
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
     glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(translations), &translations[0], GL_STATIC_DRAW);
-    GLintptr vertex_position_offset = 0;
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)vertex_position_offset);
-    glVertexAttribDivisor(1, 1);
-    glEnableVertexAttribArray(1);
+    glBufferData(GL_ARRAY_BUFFER, long(translations.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), translations.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+    // is alive bool
+    GLintptr translation_offset = long(translations.size() * 2 * sizeof(GLfloat));
+    glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
+    glVertexAttribPointer(2, 1, GL_UNSIGNED_INT, GL_FALSE, sizeof(GLuint), (GLvoid*)translation_offset);
 
+    glVertexAttribDivisor(1, 1);
+    glVertexAttribDivisor(2, 1);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
     glBindVertexArray(0);
 
 
@@ -133,7 +146,7 @@ int main() {
         glUseProgram(shader_program);
 
         glBindVertexArray(VAO);
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, 2);
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(translations.size() + 1));
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
