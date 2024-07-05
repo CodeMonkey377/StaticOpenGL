@@ -21,18 +21,111 @@ std::string readFile(const char* filePath){
 }
 
 /// function used in render loop to update is_alive vertex attribute sent to fragment shader
-void update_game(std::vector<GLuint> &tile_is_alive, int index){
-    std::cout << "\nUpdating Game, test tile: ";
-    std::cout << tile_is_alive[200];
+void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_height){
+    int live_neighbors;
+    int i;
 
-    // game of life
+    int top_left_index;
+    int top_index;
+    int top_right_index;
+    int left_index;
+    int right_index;
+    int bottom_left_index;
+    int bottom_index;
+    int bottom_right_index;
 
-    if (tile_is_alive[0] > 0){
-        std::fill(tile_is_alive.begin(), tile_is_alive.end(), 0);
+    std::vector<int> neighbor_count;
+
+    // loop over every point, check order - TL, L, BL, T, B, TR, R, BR
+    for (i = 0; i < map_width * map_height - 1; i++) {
+        live_neighbors = 0;
+        /// Indices
+        top_left_index = (i + map_width - 1);
+        top_index = (i + map_width);
+        top_right_index = (i + map_width + 1);
+        left_index = (i - 1);
+        right_index = (i + 1);
+        bottom_left_index = (i - map_width - 1);
+        bottom_index = (i - map_width);
+        bottom_right_index = (i - map_width + 1);
+
+        // left wall - enter loop if not left
+        if (i != 0 && i % map_width != 0) {
+            // top wall - enter loop if not top
+            if (i < map_width * map_height - map_width) {
+                /// top left check
+                if (tile_is_alive[top_left_index] == 1) {
+                    live_neighbors++;
+                }
+            }
+            /// left check
+            if (tile_is_alive[left_index] == 1) {
+                live_neighbors++;
+            }
+            // bottom wall - enter loop if not bottom
+            if (i > map_width - 1) {
+                /// bottom left check
+                if (tile_is_alive[bottom_left_index] == 1) {
+                    live_neighbors++;
+                }
+            }
+        }
+        // top wall - enter loop if not top
+        if (i < map_width * map_height - map_width) {
+            /// top check
+            if (tile_is_alive[top_index] == 1) {
+                live_neighbors++;
+            }
+        }
+        // bottom wall - enter loop if not bottom
+        if (i > map_width - 1) {
+            /// bottom check
+            if (tile_is_alive[bottom_index] == 1) {
+                live_neighbors++;
+            }
+        }
+        // right wall - enter loop if not right
+        if (i != map_width - 1 && i + 1 % map_width != 0) {
+            // top wall - enter loop if not top
+            if (i < map_width * map_height - map_width) {
+                /// top right check
+                if (tile_is_alive[top_right_index] == 1) {
+                    live_neighbors++;
+                }
+            }
+            /// right check
+            if (tile_is_alive[right_index] == 1) {
+                live_neighbors++;
+            }
+            // bottom wall - enter loop if not bottom
+            if (i > map_width - 1) {
+                /// bottom right check
+                if (tile_is_alive[bottom_right_index] == 1) {
+                    live_neighbors++;
+                }
+            }
+        }
+/*
+        if (i == 25){
+            std::cout << "  -  Live neighbors for 25 = " << live_neighbors << "\n";
+        }
+        std::cout << "i = " << i << " - Live neighbors = " << live_neighbors <<"\n";
+*/
+        neighbor_count.push_back(live_neighbors);
     }
-    else if (tile_is_alive[0] <= 0){
-        std::fill(tile_is_alive.begin(), tile_is_alive.end(), 1);
+
+    for (int j = 0; j < map_width * map_height - 1; j++){
+        if (neighbor_count[j] < 2){
+            tile_is_alive[j] = 0;
+        }
+        else if (neighbor_count[j] == 3){
+            tile_is_alive[j] = 1;
+        }
+        else if (neighbor_count[j] > 3){
+            tile_is_alive[j] = 0;
+        }
     }
+
 }
 
 int main() {
@@ -40,8 +133,8 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 25;
-    int map_height = 25;
+    int map_width = 50;
+    int map_height = 50;
 
     // Two Triangles that make up square
     GLfloat vertices[12] = {
@@ -67,7 +160,9 @@ int main() {
     }
     // vector that conveys weather a given tile is alive or dead. Runs bottom left to top right
     std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
-    tile_is_alive[0] = 1;
+    tile_is_alive[1] = 1;
+    tile_is_alive[51] = 1;
+    tile_is_alive[101] = 1;
 
     GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
@@ -81,7 +176,7 @@ int main() {
        std::cout << "Glad failed to load GL function pointers" << "\n";
        return -2;
    }
-   std::cout << "Loaded Open GL\n";
+   std::cout << "\nLoaded Open GL\n";
    glViewport(0, 0, 1500, 1500);
 
     std::string vertex_shader_code = readFile("../shaders/vertex.glsl");
@@ -162,7 +257,7 @@ int main() {
         test_index += 0.001;
         if (test_index > 1){
             test_index = 0;
-            //update_game(tile_is_alive);
+            update_game(tile_is_alive, map_width, map_height);
         }
 
         glfwSwapBuffers(window);
