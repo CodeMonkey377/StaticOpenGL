@@ -19,7 +19,9 @@ std::string readFile(const char* filePath){
     buffer << file.rdbuf();
     return buffer.str();
 }
-
+void window_size_callback(GLFWwindow* window, int width, int height){
+    glViewport(0, 0, width, height);
+}
 /// function used in render loop to update is_alive vertex attribute sent to fragment shader
 void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_height){
     int live_neighbors;
@@ -128,13 +130,45 @@ void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_heig
 
 }
 
+void click_input(std::vector<GLuint> &tile_is_alive,
+                 const int &xpos,const int &ypos,
+                 const int &map_width, const int &map_height,
+                 const int &screen_width, const int &screen_height){
+    /// M2S or map size to screen size ratio's
+    float screen_tile_width = float(screen_width) / float(map_width);
+    float screen_tile_height = float(screen_height) / float(map_height);
+
+    //std::cout << "tile width - " << screen_tile_width << ", tile height - "
+
+    for (int i = 0; i < tile_is_alive.size(); i++){
+        /// row number 0 - map width
+        if (i / map_width == int(float(screen_height - ypos) / screen_tile_height)){
+            //std::cout << "X is TRUE :: ";
+            /// col number 0 - map height
+            if (i % map_width == int(xpos / screen_tile_width)){
+                //std::cout << "Y is TRUE :: ";
+                tile_is_alive[i] = 1;
+            }
+        }
+        //std::cout << "i = " << i << "  -  i / mapw: " << i / map_width << "  - ypos / tile height: " << int(ypos / screen_tile_height) << "\n";
+    }
+    //std::cout << "Click function just ran!\n";
+}
+
+void clear_map(std::vector<GLuint> &tile_is_alive){
+    tile_is_alive.assign(tile_is_alive.size(), 0);
+}
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 50;
-    int map_height = 50;
+    int map_width = 25;
+    int map_height = 25;
+    int window_width = 2000;
+    int window_height = 2000;
+
 
     // Two Triangles that make up square
     GLfloat vertices[12] = {
@@ -147,12 +181,12 @@ int main() {
             1.0f, 1.0,
     };
     // vector filled with the offset values of each instance
-    std::vector<glm::vec2> translations;
+    std::vector<glm::vec2> tile_offset;
     int index_x = 0;
     int index_y = 0;
     for (int i = 0; i < map_height; i++){
         for (int j = 0; j < map_width; j++){
-            translations.emplace_back(index_x, index_y);
+            tile_offset.emplace_back(index_x, index_y);
             index_x += 2;
         }
         index_x = 0;
@@ -160,11 +194,8 @@ int main() {
     }
     // vector that conveys weather a given tile is alive or dead. Runs bottom left to top right
     std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
-    tile_is_alive[1] = 1;
-    tile_is_alive[51] = 1;
-    tile_is_alive[101] = 1;
 
-    GLFWwindow* window = glfwCreateWindow(1500, 1500, "Static OpenGL", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
         std::cout << "Failed to create GLFW window" << "\n";
         glfwTerminate();
@@ -177,7 +208,7 @@ int main() {
        return -2;
    }
    std::cout << "\nLoaded Open GL\n";
-   glViewport(0, 0, 1500, 1500);
+   glViewport(0, 0, window_width, window_height);
 
     std::string vertex_shader_code = readFile("../shaders/vertex.glsl");
     const GLchar *vertex_shader_source = vertex_shader_code.c_str();
@@ -225,12 +256,12 @@ int main() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
     glEnableVertexAttribArray(0);
-    // Instance buffer for translations and is alive data
+    // Instance buffer for tile_offset and is alive data
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    glBufferData(GL_ARRAY_BUFFER, long(translations.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), translations.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), tile_offset.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
     // is alive bool, 1 is alive 0 is dead
-    GLintptr translation_offset = long(translations.size() * 2 * sizeof(GLfloat));
+    GLintptr translation_offset = long(tile_offset.size() * 2 * sizeof(GLfloat));
     glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
     glVertexAttribPointer(2, 1, GL_UNSIGNED_INT, GL_FALSE, sizeof(GLuint), (GLvoid*)translation_offset);
 
@@ -242,25 +273,70 @@ int main() {
 
 
     float test_index = 0;
+    bool is_paused = true;
+    int is_paused_uniform;
+    float counter = 1;
+
+    double xpos, ypos;
+
     while(!glfwWindowShouldClose(window)){
-        glfwPollEvents();
+        glfwSetWindowSizeCallback(window, window_size_callback);
+        glfwGetCursorPos(window, &xpos, &ypos);
+        //std::cout << "Xpos: " << xpos << ", Ypos: " << ypos << "\n";
+
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shader_program);
-
         glBindVertexArray(VAO);
         glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(translations.size()));
+        glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(tile_offset.size()));
         glBindVertexArray(0);
 
-        test_index += 0.001;
-        if (test_index > 1){
-            test_index = 0;
-            update_game(tile_is_alive, map_width, map_height);
+        counter += 0.001;
+        if (counter > 2){
+            counter = 2;
+        }
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS){
+            if (is_paused){
+                if (counter > 1){
+                    is_paused = false;
+                    counter = 0;
+                }
+            }
+            else {
+                if (counter > 1) {
+                    is_paused = true;
+                    counter = 0;
+                }
+            }
+        }
+        if (is_paused){
+            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+                //std::cout << "You just clicked!\n";
+                click_input(tile_is_alive, xpos, ypos, map_width, map_height, window_width, window_height);
+            }
+            if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS){
+                std::cout << "Clearing Map...\n";
+                clear_map(tile_is_alive);
+            }
         }
 
+
+        test_index += 0.005;
+        if (test_index > 1){
+            test_index = 0;
+            if (!is_paused){
+                update_game(tile_is_alive, map_width, map_height);
+            }
+        }
+
+        if (is_paused)  {is_paused_uniform = 1;}
+        else            {is_paused_uniform = 0;}
+        glUniform1i(glGetUniformLocation(shader_program, "is_paused"), is_paused_uniform);
+
         glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 
    glfwTerminate();
