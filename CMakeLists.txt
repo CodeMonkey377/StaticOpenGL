@@ -11,10 +11,23 @@ include_directories(glm)
 
 add_library(glad STATIC glad/src/glad.c)
 
+
 set(GLFW_BUILD_WAYLAND OFF)
+set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(glfw-3.4)
 
+
+
 add_executable(StaticOpenGL main.cpp glad/src/glad.c)
+# Embed shaders
+file(READ ${CMAKE_SOURCE_DIR}/shaders/vertex.glsl VERTEX_SHADER)
+file(READ ${CMAKE_SOURCE_DIR}/shaders/fragment.glsl FRAGMENT_SHADER)
+
+configure_file(
+        ${CMAKE_SOURCE_DIR}/shader_resources.h.in
+        ${CMAKE_BINARY_DIR}/shader_resources.h
+)
+target_include_directories(StaticOpenGL PRIVATE ${CMAKE_BINARY_DIR})
 
 target_link_libraries(StaticOpenGL glad glfw ${GLFW_LIBRARIES})
 # If I decide to use windows or unix specific static libraries

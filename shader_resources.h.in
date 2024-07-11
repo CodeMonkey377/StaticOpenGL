@@ -1,0 +1,12 @@
+#ifndef SHADER_RESOURCES_H
+#define SHADER_RESOURCES_H
+
+const char* VERTEX_SHADER_SOURCE = R"glsl(
+@VERTEX_SHADER@
+)glsl";
+
+const char* FRAGMENT_SHADER_SOURCE = R"glsl(
+@FRAGMENT_SHADER@
+)glsl";
+
+#endif // SHADER_RESOURCES_H

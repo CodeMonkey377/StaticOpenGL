@@ -7,6 +7,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include "shader_resources.h"
 
 /// Shader file reader function declaration
 std::string readFile(const char* filePath){
@@ -129,7 +130,7 @@ void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_heig
     }
 
 }
-
+/// manages cursor input
 void click_input(std::vector<GLuint> &tile_is_alive,
                  const int &xpos,const int &ypos,
                  const int &map_width, const int &map_height,
@@ -154,18 +155,18 @@ void click_input(std::vector<GLuint> &tile_is_alive,
     }
     //std::cout << "Click function just ran!\n";
 }
-
+/// kills all tiles when paused, key R
 void clear_map(std::vector<GLuint> &tile_is_alive){
     tile_is_alive.assign(tile_is_alive.size(), 0);
 }
-
+/// main function
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 25;
-    int map_height = 25;
+    int map_width = 100;
+    int map_height = 100;
     int window_width = 2000;
     int window_height = 2000;
 
@@ -210,10 +211,13 @@ int main() {
    std::cout << "\nLoaded Open GL\n";
    glViewport(0, 0, window_width, window_height);
 
-    std::string vertex_shader_code = readFile("../shaders/vertex.glsl");
-    const GLchar *vertex_shader_source = vertex_shader_code.c_str();
-    std::string fragment_shader_code = readFile("../shaders/fragment.glsl");
-    const GLchar *fragment_shader_source = fragment_shader_code.c_str();
+    const GLchar *vertex_shader_source = VERTEX_SHADER_SOURCE;
+    const GLchar *fragment_shader_source = FRAGMENT_SHADER_SOURCE;
+
+//    std::string vertex_shader_code = readFile("../shaders/vertex.glsl");
+//    const GLchar *vertex_shader_source = vertex_shader_code.c_str();
+//    std::string fragment_shader_code = readFile("../shaders/fragment.glsl");
+//    const GLchar *fragment_shader_source = fragment_shader_code.c_str();
 
     GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex_shader, 1, &vertex_shader_source, nullptr);
@@ -323,7 +327,7 @@ int main() {
         }
 
 
-        test_index += 0.005;
+        test_index += 0.009;
         if (test_index > 1){
             test_index = 0;
             if (!is_paused){
