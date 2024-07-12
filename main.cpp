@@ -155,6 +155,25 @@ void click_input(std::vector<GLuint> &tile_is_alive,
     }
     //std::cout << "Click function just ran!\n";
 }
+/// Updates window title
+void update_window_title(GLFWwindow* window, std::vector<GLuint> &tile_is_alive, bool is_paused) {
+    std::ostringstream title;
+    int population = 0;
+    for (auto tile : tile_is_alive){
+        if (tile == 1){
+            population++;
+        }
+    }
+    std::string pause_value;
+    if (is_paused){
+        pause_value = "Game Paused";
+    }
+    else {
+        pause_value = "Simulating...";
+    }
+    title << "Conway's Game Of Life - Population: " << population << " - " << pause_value;
+    glfwSetWindowTitle(window, title.str().c_str());
+}
 /// kills all tiles when paused, key R
 void clear_map(std::vector<GLuint> &tile_is_alive){
     tile_is_alive.assign(tile_is_alive.size(), 0);
@@ -167,8 +186,24 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     int map_width = 100;
     int map_height = 100;
-    int window_width = 2000;
-    int window_height = 2000;
+    // Get primary monitor
+    GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+    if (!primaryMonitor) {
+        std::cerr << "Failed to get primary monitor" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+
+    // Get video mode of the monitor
+    const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
+    if (!mode) {
+        std::cerr << "Failed to get video mode" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+
+    int window_width = mode->width / 2;
+    int window_height = mode->height / 2;
 
 
     // Two Triangles that make up square
@@ -209,7 +244,7 @@ int main() {
        return -2;
    }
    std::cout << "\nLoaded Open GL\n";
-   glViewport(0, 0, window_width, window_height);
+   //glViewport(0, 0, window_width, window_height);
 
     const GLchar *vertex_shader_source = VERTEX_SHADER_SOURCE;
     const GLchar *fragment_shader_source = FRAGMENT_SHADER_SOURCE;
@@ -278,6 +313,8 @@ int main() {
 
     float test_index = 0;
     bool is_paused = true;
+    bool r_key_currently_pressed = false;
+    bool r_key_previously_pressed = false;
     int is_paused_uniform;
     float counter = 1;
 
@@ -315,16 +352,19 @@ int main() {
                 }
             }
         }
+
+        r_key_currently_pressed = (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS);
         if (is_paused){
-            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
+            if (glfwGetKey(window, GLFW_KEY_W) || glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS){
                 //std::cout << "You just clicked!\n";
                 click_input(tile_is_alive, xpos, ypos, map_width, map_height, window_width, window_height);
             }
-            if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS){
+            if (r_key_currently_pressed && !r_key_previously_pressed){
                 std::cout << "Clearing Map...\n";
                 clear_map(tile_is_alive);
             }
         }
+        r_key_previously_pressed = r_key_currently_pressed;
 
 
         test_index += 0.009;
@@ -339,6 +379,7 @@ int main() {
         else            {is_paused_uniform = 0;}
         glUniform1i(glGetUniformLocation(shader_program, "is_paused"), is_paused_uniform);
 
+        update_window_title(window, tile_is_alive, is_paused);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
