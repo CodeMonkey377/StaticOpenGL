@@ -16,7 +16,7 @@ void main()
         }
     }
     else{
-        frag_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        frag_color = vec4(0.2f, 0.3f, 0.2f, 1.0f);
     }
 
 }
