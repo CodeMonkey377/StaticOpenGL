@@ -9,6 +9,9 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "shader_resources.h"
 
+int window_width = 0;
+int window_height = 0;
+
 /// Shader file reader function declaration
 std::string readFile(const char* filePath){
     std::ifstream file(filePath);
@@ -20,7 +23,9 @@ std::string readFile(const char* filePath){
     buffer << file.rdbuf();
     return buffer.str();
 }
-void window_size_callback(GLFWwindow* window, int width, int height){
+void framebuffer_size_callback(GLFWwindow* window, int width, int height){
+    window_height = height;
+    window_width = width;
     glViewport(0, 0, width, height);
 }
 /// function used in render loop to update is_alive vertex attribute sent to fragment shader
@@ -178,14 +183,15 @@ void update_window_title(GLFWwindow* window, std::vector<GLuint> &tile_is_alive,
 void clear_map(std::vector<GLuint> &tile_is_alive){
     tile_is_alive.assign(tile_is_alive.size(), 0);
 }
+
 /// main function
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 100;
-    int map_height = 100;
+    int map_width = 250;
+    int map_height = 250;
     // Get primary monitor
     GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
     if (!primaryMonitor) {
@@ -202,8 +208,8 @@ int main() {
         return -1;
     }
 
-    int window_width = mode->width / 2;
-    int window_height = mode->height / 2;
+    window_width = mode->width / 2;
+    window_height = mode->height / 2;
 
 
     // Two Triangles that make up square
@@ -297,7 +303,16 @@ int main() {
     glEnableVertexAttribArray(0);
     // Instance buffer for tile_offset and is alive data
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    glBufferData(GL_ARRAY_BUFFER, long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), tile_offset.data(), GL_STATIC_DRAW);
+    int gl_max_elements = 0;
+    glGetIntegerv(GL_MAX_SHADER_STORAGE_BLOCK_SIZE, &gl_max_elements);
+
+
+    unsigned long long offset_alive_data_size = tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint);
+    //std::cout << "max elements = " << gl_max_elements << "\n" << "size of offset_alive: " << offset_alive_data_size << "\n";
+    glBufferData(GL_ARRAY_BUFFER, long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), nullptr, GL_DYNAMIC_DRAW);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, long(tile_offset.size() * 2 * sizeof(GLfloat)), tile_offset.data());
+    //std::cout << "Size of buffer: " << long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)) << "\n";
+
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
     // is alive bool, 1 is alive 0 is dead
     GLintptr translation_offset = long(tile_offset.size() * 2 * sizeof(GLfloat));
@@ -318,10 +333,13 @@ int main() {
     int is_paused_uniform;
     float counter = 1;
 
+    int cat;
+
     double xpos, ypos;
 
+
     while(!glfwWindowShouldClose(window)){
-        glfwSetWindowSizeCallback(window, window_size_callback);
+        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
         glfwGetCursorPos(window, &xpos, &ypos);
         //std::cout << "Xpos: " << xpos << ", Ypos: " << ypos << "\n";
 
@@ -367,7 +385,7 @@ int main() {
         r_key_previously_pressed = r_key_currently_pressed;
 
 
-        test_index += 0.009;
+        test_index += 0.01;
         if (test_index > 1){
             test_index = 0;
             if (!is_paused){
