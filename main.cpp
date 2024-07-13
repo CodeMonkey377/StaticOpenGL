@@ -276,20 +276,40 @@ int main() {
     glUniform1i(glGetUniformLocation(shader_program, "map_width"), map_width);
     glUniform1i(glGetUniformLocation(shader_program, "map_height"), map_height);
     glUseProgram(0);
-    /* tests to see if shader is working properly
+    // tests to see if shader is working properly
     int success;
     char infoLog[512];
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
+    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
     if(!success)
     {
-        glGetShaderInfoLog(shader_program, 512, nullptr, infoLog);
+        glGetShaderInfoLog(vertex_shader, 512, nullptr, infoLog);
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" <<
                   infoLog << std::endl;
     }
     if(success){
-        std::cout << "shader program successfully compiled";
+        std::cout << "vertex shader successfully compiled\n";
     }
-    */
+    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
+    if(!success)
+    {
+        glGetShaderInfoLog(fragment_shader, 512, nullptr, infoLog);
+        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" <<
+                  infoLog << std::endl;
+    }
+    if(success){
+        std::cout << "fragment shader successfully compiled\n";
+    }
+    glGetShaderiv(shader_program, GL_COMPILE_STATUS, &success);
+    if(!success)
+    {
+        glGetShaderInfoLog(shader_program, 512, nullptr, infoLog);
+        std::cout << "ERROR::SHADER::PROGRAM::COMPILATION_FAILED\n" <<
+                  infoLog << std::endl;
+    }
+    if(success){
+        std::cout << "shader program successfully compiled\n";
+    }
+
 
     GLuint VBO, instanceVBO, VAO;
     glGenVertexArrays(1, &VAO);
