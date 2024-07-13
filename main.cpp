@@ -350,6 +350,8 @@ int main() {
     bool is_paused = true;
     bool r_key_currently_pressed = false;
     bool r_key_previously_pressed = false;
+    bool pause_currently_pressed = false;
+    bool pause_previously_pressed = false;
     int is_paused_uniform;
     float counter = 1;
 
@@ -372,24 +374,16 @@ int main() {
         glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(tile_offset.size()));
         glBindVertexArray(0);
 
-        counter += 0.001;
-        if (counter > 2){
-            counter = 2;
-        }
-        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS){
-            if (is_paused){
-                if (counter > 1){
-                    is_paused = false;
-                    counter = 0;
-                }
+        pause_currently_pressed = (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS);
+        if (pause_currently_pressed && !pause_previously_pressed){
+            if (is_paused) {
+                is_paused = false;
             }
             else {
-                if (counter > 1) {
-                    is_paused = true;
-                    counter = 0;
-                }
+                is_paused = true;
             }
         }
+        pause_previously_pressed = pause_currently_pressed;
 
         r_key_currently_pressed = (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS);
         if (is_paused){
