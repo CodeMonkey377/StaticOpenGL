@@ -27,6 +27,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height){
     window_height = height;
     window_width = width;
     glViewport(0, 0, width, height);
+    // add feature where game map is redrawn to match window aspect ratio
 }
 /// function used in render loop to update is_alive vertex attribute sent to fragment shader
 void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_height){
@@ -134,6 +135,11 @@ void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_heig
         }
     }
 
+    // alive buffer debug, ensures tile values are correct.
+    for (auto tile : tile_is_alive){
+        std::cout << tile << ",";
+    }
+    std::cout << "\n\n";
 }
 /// manages cursor input
 void click_input(std::vector<GLuint> &tile_is_alive,
@@ -190,8 +196,8 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 250;
-    int map_height = 250;
+    int map_width = 25;
+    int map_height = 25;
     // Get primary monitor
     GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
     if (!primaryMonitor) {
@@ -325,8 +331,6 @@ int main() {
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
     int gl_max_elements = 0;
     glGetIntegerv(GL_MAX_SHADER_STORAGE_BLOCK_SIZE, &gl_max_elements);
-
-
     unsigned long long offset_alive_data_size = tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint);
     //std::cout << "max elements = " << gl_max_elements << "\n" << "size of offset_alive: " << offset_alive_data_size << "\n";
     glBufferData(GL_ARRAY_BUFFER, long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), nullptr, GL_DYNAMIC_DRAW);

@@ -8,7 +8,7 @@ flat in int pause_state;
 void main()
 {
     if (tile_is_alive > 0){
-        if (pause_state == 1){
+        if (pause_state > 0){
             frag_color = vec4(1.0f, 0.0f, 0.0f, 1.0f);
         }
         else {
