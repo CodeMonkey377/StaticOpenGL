@@ -329,9 +329,9 @@ int main() {
     glEnableVertexAttribArray(0);
     // Instance buffer for tile_offset and is alive data
         glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    int gl_max_elements = 0;
-    glGetIntegerv(GL_MAX_SHADER_STORAGE_BLOCK_SIZE, &gl_max_elements);
-    unsigned long long offset_alive_data_size = tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint);
+    //int gl_max_elements = 0;
+    //glGetIntegerv(GL_MAX_SHADER_STORAGE_BLOCK_SIZE, &gl_max_elements);
+    //unsigned long long offset_alive_data_size = tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint);
     //std::cout << "max elements = " << gl_max_elements << "\n" << "size of offset_alive: " << offset_alive_data_size << "\n";
     glBufferData(GL_ARRAY_BUFFER, long(tile_offset.size() * 2 * sizeof(GLfloat) + tile_is_alive.size() * sizeof(GLuint)), nullptr, GL_DYNAMIC_DRAW);
     glBufferSubData(GL_ARRAY_BUFFER, 0, long(tile_offset.size() * 2 * sizeof(GLfloat)), tile_offset.data());
@@ -373,8 +373,9 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shader_program);
-        glBindVertexArray(VAO);
+        glBindVertexArray(instanceVBO);
         glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
+        glBindVertexArray(VAO);
         glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(tile_offset.size()));
         glBindVertexArray(0);
 
@@ -419,23 +420,6 @@ int main() {
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // Get OpenGL version
-    const GLubyte* version = glGetString(GL_VERSION);
-    std::cout << "OpenGL Version: " << version << std::endl;
-
-    // Get OpenGL vendor
-    const GLubyte* vendor = glGetString(GL_VENDOR);
-    std::cout << "OpenGL Vendor: " << vendor << std::endl;
-
-    // Get OpenGL renderer
-    const GLubyte* renderer = glGetString(GL_RENDERER);
-    std::cout << "OpenGL Renderer: " << renderer << std::endl;
-
-    // Get GLSL version
-    const GLubyte* glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
-    std::cout << "GLSL Version: " << glslVersion << std::endl;
-
    glfwTerminate();
    return 0;
 }
