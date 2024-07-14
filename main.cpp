@@ -420,6 +420,22 @@ int main() {
         glfwPollEvents();
     }
 
+    // Get OpenGL version
+    const GLubyte* version = glGetString(GL_VERSION);
+    std::cout << "OpenGL Version: " << version << std::endl;
+
+    // Get OpenGL vendor
+    const GLubyte* vendor = glGetString(GL_VENDOR);
+    std::cout << "OpenGL Vendor: " << vendor << std::endl;
+
+    // Get OpenGL renderer
+    const GLubyte* renderer = glGetString(GL_RENDERER);
+    std::cout << "OpenGL Renderer: " << renderer << std::endl;
+
+    // Get GLSL version
+    const GLubyte* glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+    std::cout << "GLSL Version: " << glslVersion << std::endl;
+
    glfwTerminate();
    return 0;
 }
