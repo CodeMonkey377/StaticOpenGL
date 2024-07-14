@@ -1,13 +1,13 @@
 # ninja log v5
 37	4234	7417411311692599	glfw-3.4/src/CMakeFiles/glfw.dir/init.c.obj	73e9169e659b5732
-1	364	7426334838933694	build.ninja	b33653e9ae006780
+1	364	7426337719903840	build.ninja	b33653e9ae006780
 21	4501	7417411314277251	glfw-3.4/src/CMakeFiles/glfw.dir/input.c.obj	7c6e3c14fb1ede89
 4430	6703	7417411336375236	glfw-3.4/src/CMakeFiles/glfw.dir/win32_window.c.obj	ce72009b147ead9
-6	1788	7426321176446292	CMakeFiles/StaticOpenGL.dir/main.cpp.obj	166c1448233f848d
+14	3039	7426337596982097	CMakeFiles/StaticOpenGL.dir/main.cpp.obj	166c1448233f848d
 57	4315	7417411312371908	glfw-3.4/src/CMakeFiles/glfw.dir/window.c.obj	93fa73eeee0420bf
-26	4430	7417411313407242	glfw-3.4/src/CMakeFiles/glfw.dir/monitor.c.obj	5646df92e3533794
-1788	2148	7426321179845584	StaticOpenGL.exe	131745a0f177b7fa
 4234	6177	7417411331136826	glfw-3.4/src/CMakeFiles/glfw.dir/win32_init.c.obj	bce5dfbbae59123a
+26	4430	7417411313407242	glfw-3.4/src/CMakeFiles/glfw.dir/monitor.c.obj	5646df92e3533794
+3040	3533	7426337601673666	StaticOpenGL.exe	131745a0f177b7fa
 11	4293	7424108587261974	CMakeFiles/StaticOpenGL.dir/glad/src/glad.c.obj	e579ef61d04896e2
 32	4059	7417411309928705	glfw-3.4/src/CMakeFiles/glfw.dir/context.c.obj	1f329eb25233bd13
 4501	6240	7417411331774100	glfw-3.4/src/CMakeFiles/glfw.dir/win32_thread.c.obj	196a2b40e8be987e
@@ -27,5 +27,5 @@
 4003	5914	7417411328424509	glfw-3.4/src/CMakeFiles/glfw.dir/null_joystick.c.obj	e6ec02022aa09790
 4315	6309	7417411332455608	glfw-3.4/src/CMakeFiles/glfw.dir/win32_joystick.c.obj	c3156137d522f965
 6703	6857	7417411337936110	glfw-3.4/src/libglfw3.a	2b10eee5ffcba385
-11	2524	7426334897090708	CMakeFiles/StaticOpenGL.dir/main.cpp.obj	166c1448233f848d
-2525	2960	7426334901266761	StaticOpenGL.exe	131745a0f177b7fa
+8	2505	7426337772214278	CMakeFiles/StaticOpenGL.dir/main.cpp.obj	166c1448233f848d
+2505	2980	7426337776760013	StaticOpenGL.exe	131745a0f177b7fa

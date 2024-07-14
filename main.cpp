@@ -241,7 +241,7 @@ int main() {
         index_y += 2;
     }
     // vector that conveys weather a given tile is alive or dead. Runs bottom left to top right
-    std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
+    std::vector<GLuint> tile_is_alive(map_width * map_height, 1);
 
     GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
