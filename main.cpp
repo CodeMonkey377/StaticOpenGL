@@ -347,6 +347,7 @@ int main() {
     glVertexAttribDivisor(2, 1);
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
 
@@ -373,10 +374,11 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(shader_program);
-        glBindVertexArray(instanceVBO);
-        glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
         glBindVertexArray(VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, translation_offset, long(tile_is_alive.size() * sizeof(GLuint)), tile_is_alive.data());
         glDrawArraysInstanced(GL_TRIANGLES, 0, 18, int(tile_offset.size()));
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 
         pause_currently_pressed = (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS);
