@@ -134,12 +134,13 @@ void update_game(std::vector<GLuint> &tile_is_alive, int map_width, int map_heig
             tile_is_alive[j] = 0;
         }
     }
-
+    /*
     // alive buffer debug, ensures tile values are correct.
     for (auto tile : tile_is_alive){
         std::cout << tile << ",";
     }
     std::cout << "\n\n";
+    */
 }
 /// manages cursor input
 void click_input(std::vector<GLuint> &tile_is_alive,
@@ -196,8 +197,8 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    int map_width = 25;
-    int map_height = 25;
+    int map_width = 100;
+    int map_height = 100;
     // Get primary monitor
     GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
     if (!primaryMonitor) {
@@ -241,7 +242,7 @@ int main() {
         index_y += 2;
     }
     // vector that conveys weather a given tile is alive or dead. Runs bottom left to top right
-    std::vector<GLuint> tile_is_alive(map_width * map_height, 1);
+    std::vector<GLuint> tile_is_alive(map_width * map_height, 0);
 
     GLFWwindow* window = glfwCreateWindow(window_width, window_height, "Static OpenGL", nullptr, nullptr);
     if (window == nullptr){
