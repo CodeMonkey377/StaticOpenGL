@@ -2,13 +2,19 @@
 #include "glfw-3.4/include/GLFW/glfw3.h"
 #include <iostream>
 
+void glfwErrorCallback(int error, const char* description) {
+	std::cerr << "GLFW Error (" << error << ")" << description << "\n";
+}
+
 
 int main() {
     glfwInit();
-    if (glfwInit == false){
+    if (!glfwInit){
 	    std::cout << "Failed to init glfw" << "\n";
 	    return -1;
     }
+    glfwSetErrorCallback(glfwErrorCallback);
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);

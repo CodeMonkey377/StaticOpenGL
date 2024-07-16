@@ -1,0 +1,1 @@
+/usr/bin/c++ -static CMakeFiles/StaticOpenGL.dir/main.cpp.o CMakeFiles/StaticOpenGL.dir/glad/src/glad.c.o -o StaticOpenGL  libglad.a glfw-3.4/src/libglfw3.a /usr/lib/librt.a -lm -ldl

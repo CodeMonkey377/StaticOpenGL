@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(StaticOpenGL)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) # This requires c++ 23, could cause issues
 set(CMAKE_EXE_LINKER_FLAGS "-static")
 
